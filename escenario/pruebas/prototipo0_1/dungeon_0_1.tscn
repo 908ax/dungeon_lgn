@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://bnhe35vqu7jfq"]
+[gd_scene load_steps=17 format=4 uid="uid://bnhe35vqu7jfq"]
 
 [ext_resource type="Script" uid="uid://dxfycytggxdp7" path="res://escenario/pruebas/prototipo0_1/dungeon_0_1.gd" id="1_5k4s4"]
 [ext_resource type="PackedScene" uid="uid://d0h8gl2so8x1r" path="res://escenario/pruebas/prototipo0_1/pared_dungeon.tscn" id="2_0bq3w"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cjjgqv5u5jpmx" path="res://escenario/pruebas/prototipo0_1/puerta_detector.tscn" id="9_5k4s4"]
 [ext_resource type="Script" uid="uid://daklniyb80tew" path="res://escenario/pruebas/prototipo0_1/game_over_panel.gd" id="11_a3o6m"]
 [ext_resource type="PackedScene" uid="uid://gq0833curuy7" path="res://escenario/pruebas/prototipo0_1/pared_2_dungeon.tscn" id="12_jrpdb"]
+[ext_resource type="PackedScene" uid="uid://d1qcs6gebt2x3" path="res://escenario/pruebas/prototipo0_1/ring.tscn" id="12_so4j8"]
 
 [sub_resource type="FontFile" id="FontFile_5k4s4"]
 subpixel_positioning = 0
@@ -266,3 +267,6 @@ offset_top = 3.0
 offset_right = 106.0
 offset_bottom = 26.0
 text = "Puntuacion: 0"
+
+[node name="Ring" parent="." instance=ExtResource("12_so4j8")]
+position = Vector2(-39, 598)

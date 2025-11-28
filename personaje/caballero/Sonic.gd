@@ -163,7 +163,7 @@ func damage_rings(amount: int):
 
 
 # --- Ataque destruye Pokeballs ---
-func _on_area_2d_area_entered(body):
+func _on_attack_area_body_entered(body):
 	if body.is_in_group("pokeball"):
 		body.queue_free()
 	elif body.is_in_group("enemigos"):

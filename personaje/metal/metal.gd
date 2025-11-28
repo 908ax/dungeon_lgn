@@ -2,7 +2,7 @@
 extends CharacterBody2D
 
 # --- Configuración ---
-@export var speed: float = 130.0
+@export var speed: float = 100.0
 @export var shoot_interval: float = 2.0
 @export var pokeball_scene: PackedScene
 @export var launch_offset_x: float = 16.0
@@ -120,19 +120,31 @@ func take_damage(amount: int, player: Node) -> void:
 
 		queue_free()
 		
-func spawn_ring_safe(position: Vector2) -> void:
-	var space_state = get_world_2d().direct_space_state
-	
-	var query = PhysicsPointQueryParameters2D.new()
-	query.position = position
-	query.collide_with_bodies = true
-	query.collide_with_areas = true
-	# Puedes filtrar layers si quieres
-	# query.collision_mask = 1 << 0  # por ejemplo layer 0
-	
-	var result = space_state.intersect_point(query)
+func spawn_ring_safe(area_pos: Vector2) -> void:
+	var max_intentos := 10
 
-	if result.size() == 0:
-		var ring = ring_scene.instantiate()
-		ring.global_position = position
-		get_tree().current_scene.add_child(ring)
+	for i in range(max_intentos):
+		var angle = randf() * TAU
+		var distance = randf_range(40, 80)
+		var offset = Vector2(cos(angle), sin(angle)) * distance
+		var spawn_pos = area_pos + offset
+
+		# --- Raycast hacia abajo ---
+		var space_state = get_world_2d().direct_space_state
+		var query = PhysicsRayQueryParameters2D.new()
+		query.from = spawn_pos
+		query.to = spawn_pos + Vector2(0, 200)  # 200 px hacia abajo
+		query.collide_with_areas = false
+		query.collide_with_bodies = true
+		query.collision_mask = 1 << 1  # ← aquí pones LA LAYER DE TU SUELO
+
+		var result = space_state.intersect_ray(query)
+
+		if result:
+			# Toca suelo, generar ring ahí
+			var ring = ring_scene.instantiate()
+			ring.global_position = result.position
+			get_tree().current_scene.add_child(ring)
+			return
+
+	print("No encontré lugar seguro para ring")
