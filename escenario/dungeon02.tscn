@@ -1,0 +1,130 @@
+[gd_scene load_steps=9 format=3 uid="uid://d6ujwgprk4w4"]
+
+[ext_resource type="Texture2D" uid="uid://e17aswh0rfkw" path="res://imagenes/Tiles/entrada_dungeon.png" id="1_bgkd6"]
+[ext_resource type="Texture2D" uid="uid://dy3cgcc1ugj0h" path="res://imagenes/Tiles/dungeon_suelo.png" id="1_hva2m"]
+[ext_resource type="Script" uid="uid://dea5igllxcwt6" path="res://escenario/scripts/puerta.gd" id="1_ojfkp"]
+[ext_resource type="Texture2D" uid="uid://cr3uadr5alxh2" path="res://imagenes/Tiles/pared.png" id="3_ojfkp"]
+[ext_resource type="Texture2D" uid="uid://crgfj6d5g545h" path="res://imagenes/Tiles/pared2.png" id="4_cts68"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojfkp"]
+size = Vector2(378, 286)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hkwm7"]
+size = Vector2(46, 47)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cts68"]
+size = Vector2(161, 63)
+
+[node name="Zona01" type="Node2D"]
+
+[node name="Puerta" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ojfkp")
+
+[node name="Suelo" type="Area2D" parent="."]
+
+[node name="DungeonSuelo" type="Sprite2D" parent="Suelo"]
+position = Vector2(-1, 95)
+texture = ExtResource("1_hva2m")
+
+[node name="DungeonSuelo2" type="Sprite2D" parent="Suelo"]
+position = Vector2(-2, 190)
+texture = ExtResource("1_hva2m")
+
+[node name="DungeonSuelo3" type="Sprite2D" parent="Suelo"]
+position = Vector2(-3, 285)
+texture = ExtResource("1_hva2m")
+
+[node name="DungeonSuelo4" type="Sprite2D" parent="Suelo"]
+position = Vector2(126, 95)
+texture = ExtResource("1_hva2m")
+
+[node name="DungeonSuelo5" type="Sprite2D" parent="Suelo"]
+position = Vector2(125, 190)
+texture = ExtResource("1_hva2m")
+
+[node name="DungeonSuelo6" type="Sprite2D" parent="Suelo"]
+position = Vector2(124, 285)
+texture = ExtResource("1_hva2m")
+
+[node name="DungeonSuelo7" type="Sprite2D" parent="Suelo"]
+position = Vector2(-128, 96)
+texture = ExtResource("1_hva2m")
+
+[node name="DungeonSuelo8" type="Sprite2D" parent="Suelo"]
+position = Vector2(-129, 191)
+texture = ExtResource("1_hva2m")
+
+[node name="DungeonSuelo9" type="Sprite2D" parent="Suelo"]
+position = Vector2(-130, 286)
+texture = ExtResource("1_hva2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Suelo"]
+position = Vector2(-1, 191)
+shape = SubResource("RectangleShape2D_ojfkp")
+
+[node name="Pared1" type="Area2D" parent="."]
+
+[node name="Pared" type="Sprite2D" parent="Pared1"]
+position = Vector2(75, 14)
+texture = ExtResource("3_ojfkp")
+
+[node name="Pared2" type="Sprite2D" parent="Pared1"]
+position = Vector2(100, 14)
+texture = ExtResource("3_ojfkp")
+
+[node name="Pared3" type="Sprite2D" parent="Pared1"]
+position = Vector2(125, 14)
+texture = ExtResource("3_ojfkp")
+
+[node name="Pared4" type="Sprite2D" parent="Pared1"]
+position = Vector2(150, 14)
+texture = ExtResource("3_ojfkp")
+
+[node name="Pared5" type="Sprite2D" parent="Pared1"]
+position = Vector2(175, 14)
+texture = ExtResource("3_ojfkp")
+
+[node name="Pared2" type="Area2D" parent="."]
+
+[node name="Pared2" type="Sprite2D" parent="Pared2"]
+position = Vector2(-170, 11)
+texture = ExtResource("4_cts68")
+
+[node name="Pared4" type="Sprite2D" parent="Pared2"]
+position = Vector2(-146, 11)
+texture = ExtResource("4_cts68")
+
+[node name="Pared5" type="Sprite2D" parent="Pared2"]
+position = Vector2(-122, 11)
+texture = ExtResource("4_cts68")
+
+[node name="Pared6" type="Sprite2D" parent="Pared2"]
+position = Vector2(-98, 11)
+texture = ExtResource("4_cts68")
+
+[node name="Pared7" type="Sprite2D" parent="Pared2"]
+position = Vector2(-74, 11)
+texture = ExtResource("4_cts68")
+
+[node name="Pared3" type="Sprite2D" parent="."]
+position = Vector2(-50, 11)
+texture = ExtResource("4_cts68")
+
+[node name="EntradaDungeon" type="Sprite2D" parent="."]
+texture = ExtResource("1_bgkd6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, 13.5)
+shape = SubResource("RectangleShape2D_hkwm7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-109.5, 16)
+shape = SubResource("RectangleShape2D_cts68")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(104.5, 16.5)
+shape = SubResource("RectangleShape2D_cts68")
+
+[connection signal="body_entered" from="Puerta" to="Puerta" method="_on_body_entered"]

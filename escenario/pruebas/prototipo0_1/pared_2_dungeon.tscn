@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://gq0833curuy7"]
+
+[ext_resource type="Texture2D" uid="uid://crgfj6d5g545h" path="res://imagenes/Tiles/pared2.png" id="1_1obnw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qc4wa"]
+size = Vector2(176, 73)
+
+[node name="pared2_dungeon" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 6
+
+[node name="Pared2" type="Sprite2D" parent="."]
+position = Vector2(-170, 11)
+texture = ExtResource("1_1obnw")
+
+[node name="Pared3" type="Sprite2D" parent="."]
+position = Vector2(-146, 11)
+texture = ExtResource("1_1obnw")
+
+[node name="Pared4" type="Sprite2D" parent="."]
+position = Vector2(-122, 11)
+texture = ExtResource("1_1obnw")
+
+[node name="Pared5" type="Sprite2D" parent="."]
+position = Vector2(-98, 11)
+texture = ExtResource("1_1obnw")
+
+[node name="Pared6" type="Sprite2D" parent="."]
+position = Vector2(-74, 11)
+texture = ExtResource("1_1obnw")
+
+[node name="Pared7" type="Sprite2D" parent="."]
+position = Vector2(-50, 11)
+texture = ExtResource("1_1obnw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-101, 11)
+shape = SubResource("RectangleShape2D_qc4wa")

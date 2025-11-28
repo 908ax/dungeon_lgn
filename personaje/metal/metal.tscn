@@ -1,0 +1,148 @@
+[gd_scene load_steps=21 format=3 uid="uid://cvvsljwwyl5lx"]
+
+[ext_resource type="Texture2D" uid="uid://dtbgv0ip7o5jd" path="res://imagenes/metal/metalcorre.png" id="1_heyoy"]
+[ext_resource type="Texture2D" uid="uid://c7g3g6m1oa4g8" path="res://imagenes/metal/metalespera.png" id="1_ufmq0"]
+[ext_resource type="Script" uid="uid://pvcx4b5nf7cn" path="res://personaje/metal/metal.gd" id="1_wbtsj"]
+[ext_resource type="PackedScene" uid="uid://bn027tfe4ewie" path="res://personaje/metal/pokeball.tscn" id="2_njrwd"]
+[ext_resource type="PackedScene" uid="uid://d1qcs6gebt2x3" path="res://escenario/pruebas/prototipo0_1/ring.tscn" id="2_qebml"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ufmq0"]
+radius = 28.0
+height = 72.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sv0hf"]
+atlas = ExtResource("1_heyoy")
+region = Rect2(0, 0, 45, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfxgf"]
+atlas = ExtResource("1_heyoy")
+region = Rect2(45, 0, 45, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqt3o"]
+atlas = ExtResource("1_heyoy")
+region = Rect2(90, 0, 36, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blpll"]
+atlas = ExtResource("1_heyoy")
+region = Rect2(126, 0, 41, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80syq"]
+atlas = ExtResource("1_heyoy")
+region = Rect2(169, 0, 41, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ge5hw"]
+atlas = ExtResource("1_heyoy")
+region = Rect2(213, 0, 35, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_heyoy"]
+atlas = ExtResource("1_ufmq0")
+region = Rect2(0, 0, 39, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbtsj"]
+atlas = ExtResource("1_ufmq0")
+region = Rect2(37, 0, 37, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qebml"]
+atlas = ExtResource("1_ufmq0")
+region = Rect2(74, 0, 36, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njrwd"]
+atlas = ExtResource("1_ufmq0")
+region = Rect2(108, 0, 34, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmkr2"]
+atlas = ExtResource("1_ufmq0")
+region = Rect2(142, 0, 34, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rwgk"]
+atlas = ExtResource("1_ufmq0")
+region = Rect2(107, 0, 34, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jmkr2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sv0hf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfxgf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqt3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blpll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80syq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ge5hw")
+}],
+"loop": true,
+"name": &"corre",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_heyoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbtsj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qebml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njrwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jmkr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rwgk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jmkr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njrwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qebml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbtsj")
+}],
+"loop": true,
+"name": &"metal",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wbtsj"]
+radius = 30.0
+height = 74.0
+
+[node name="Metal" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("1_wbtsj")
+pokeball_scene = ExtResource("2_njrwd")
+ring_scene = ExtResource("2_qebml")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ufmq0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_jmkr2")
+animation = &"corre"
+frame_progress = 0.90102047
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_wbtsj")
+
+[node name="launch_point" type="Node2D" parent="."]
+position = Vector2(29, 2)

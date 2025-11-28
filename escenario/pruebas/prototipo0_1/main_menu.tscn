@@ -1,0 +1,110 @@
+[gd_scene load_steps=9 format=3 uid="uid://ryq3sn4abf8r"]
+
+[ext_resource type="Script" uid="uid://b5l8beuy8iu0v" path="res://escenario/pruebas/prototipo0_1/main_menu.gd" id="1_mq416"]
+[ext_resource type="PackedScene" uid="uid://bnhe35vqu7jfq" path="res://escenario/pruebas/prototipo0_1/dungeon_0_1.tscn" id="2_x65hn"]
+
+[sub_resource type="GDScript" id="GDScript_mq416"]
+script/source = "extends CanvasLayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_k8vb0"]
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_mq416"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_x65hn"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_i3p8q"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_h5xo6"]
+font_size = 30
+
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("opcion_hboxes")]
+script = ExtResource("1_mq416")
+escena_juego = ExtResource("2_x65hn")
+opcion_hboxes = [NodePath("CanvasLayer/VBoxContainer/HBoxContainer4"), NodePath("CanvasLayer/VBoxContainer/HBoxContainer3"), NodePath("CanvasLayer/VBoxContainer/HBoxContainer2"), NodePath("CanvasLayer/VBoxContainer/HBoxContainer")]
+selected_color = Color(0.13293368, 0.42599118, 0.8009209, 1)
+
+[node name="Background" type="Sprite2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = SubResource("GDScript_mq416")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.5
+offset_top = -52.0
+offset_right = 54.5
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "DUNGEON"
+label_settings = SubResource("LabelSettings_k8vb0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Selector1" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+
+[node name="StartLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Iniciar partida"
+label_settings = SubResource("LabelSettings_mq416")
+horizontal_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Selector2" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="OptionsLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Opciones"
+label_settings = SubResource("LabelSettings_x65hn")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Selector3" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Informacion" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Información"
+label_settings = SubResource("LabelSettings_i3p8q")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Selector" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="QuitLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Informacion"
+label_settings = SubResource("LabelSettings_h5xo6")

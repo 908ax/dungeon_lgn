@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dl4twv4ec47i"]
+
+[ext_resource type="PackedScene" uid="uid://c3e2phv5axy57" path="res://escenario/pruebas/prototipo0_1/puerta_dungeon.tscn" id="1_1gorx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1gorx"]
+size = Vector2(78, 27)
+
+[node name="puerta" type="Node2D"]
+
+[node name="puerta_dungeon" parent="." instance=ExtResource("1_1gorx")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-7, 1.5)
+shape = SubResource("RectangleShape2D_1gorx")

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjjgqv5u5jpmx"]
+
+[ext_resource type="Script" uid="uid://dl4deqqu25dmp" path="res://escenario/pruebas/prototipo0_1/puerta_detector.gd" id="1_sxkvs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_egk53"]
+size = Vector2(57, 55)
+
+[node name="PuertaDetector" type="Area2D"]
+collision_mask = 3
+script = ExtResource("1_sxkvs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(18.5, 17.5)
+shape = SubResource("RectangleShape2D_egk53")

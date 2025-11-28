@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3e2phv5axy57"]
+
+[ext_resource type="Script" uid="uid://ibjd2teib8y2" path="res://escenario/scripts/puerta.gd" id="1_urupv"]
+[ext_resource type="Texture2D" uid="uid://e17aswh0rfkw" path="res://imagenes/Tiles/entrada_dungeon.png" id="2_jrb3l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2swcq"]
+size = Vector2(73, 47)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_urupv"]
+size = Vector2(78, 30)
+
+[node name="puerta_dungeon" type="Area2D"]
+collision_layer = 8
+collision_mask = 6
+script = ExtResource("1_urupv")
+
+[node name="EntradaDungeon" type="Sprite2D" parent="."]
+position = Vector2(-6, 0)
+texture = ExtResource("2_jrb3l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(-7.5, 22)
+shape = SubResource("RectangleShape2D_2swcq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-7, -22)
+shape = SubResource("RectangleShape2D_urupv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
