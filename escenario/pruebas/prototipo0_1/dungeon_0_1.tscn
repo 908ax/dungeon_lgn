@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://bnhe35vqu7jfq"]
+[gd_scene load_steps=18 format=4 uid="uid://bnhe35vqu7jfq"]
 
 [ext_resource type="Script" uid="uid://dxfycytggxdp7" path="res://escenario/pruebas/prototipo0_1/dungeon_0_1.gd" id="1_5k4s4"]
 [ext_resource type="PackedScene" uid="uid://d0h8gl2so8x1r" path="res://escenario/pruebas/prototipo0_1/pared_dungeon.tscn" id="2_0bq3w"]
@@ -37,6 +37,9 @@ font_color = Color(0.9254902, 0.043137256, 0.1764706, 1)
 font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_so4j8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrpdb"]
+size = Vector2(965, 486)
 
 [node name="dungeon0_1" type="Node2D"]
 script = ExtResource("1_5k4s4")
@@ -270,3 +273,9 @@ text = "Puntuacion: 0"
 
 [node name="Ring" parent="." instance=ExtResource("12_so4j8")]
 position = Vector2(-39, 598)
+
+[node name="MetalArenaArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MetalArenaArea"]
+position = Vector2(-46.5, 362)
+shape = SubResource("RectangleShape2D_jrpdb")

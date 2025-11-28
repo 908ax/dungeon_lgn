@@ -7,7 +7,7 @@ extends Node2D
 # --- Ajustes de generación ---
 @export var min_metales: int = 1
 @export var max_metales: int = 4
-
+@onready var spawn_area: Area2D = $MetalArenaArea
 @export var spawn_min_x: int = -500
 @export var spawn_max_x: int = 420
 @export var spawn_min_y: int = 120
@@ -32,7 +32,9 @@ func generar_metal():
 	# Cantidad de Metal aleatoria
 	var cantidad = randi_range(min_metales, max_metales)
 	for i in range(cantidad):
+		
 		var metal = metal_scene.instantiate()
+		metal.spawn_area = spawn_area
 		
 		# Posición aleatoria dentro del rectángulo definido
 		metal.position = Vector2(

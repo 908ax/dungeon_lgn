@@ -11,6 +11,7 @@ extends CharacterBody2D
 @export var ring_scene: PackedScene      # Arrastra Ring.tscn desde el Inspector
 @export var rings_to_drop: int = 5
 @export var score_value: int = 200       # Puntos que suma al jugador al morir
+@export var spawn_area: Area2D
 
 # --- Variables internas ---
 var sonic: CharacterBody2D = null
@@ -111,7 +112,7 @@ func take_damage(amount: int, player: Node) -> void:
 			var distance = randf_range(40, 80)
 			var offset = Vector2(cos(angle), sin(angle)) * distance
 			var spawn_pos = global_position + offset
-			spawn_ring_safe(spawn_pos)
+			spawn_ring_in_area()
 
 
 		# Aumentar puntuación del jugador si tiene método
@@ -120,31 +121,36 @@ func take_damage(amount: int, player: Node) -> void:
 
 		queue_free()
 		
-func spawn_ring_safe(area_pos: Vector2) -> void:
-	var max_intentos := 10
 
-	for i in range(max_intentos):
+func spawn_ring_in_area(min_dist := 40, max_dist := 80) -> void:
+	if not spawn_area:
+		print("Metal: No hay spawn_area asignada")
+		return
+
+	var space_state := get_world_2d().direct_space_state
+
+	var intentos := 15
+	for i in range(intentos):
+
+		# 1. Calcular posición alrededor de Metal a distancia controlada
 		var angle = randf() * TAU
-		var distance = randf_range(40, 80)
-		var offset = Vector2(cos(angle), sin(angle)) * distance
-		var spawn_pos = area_pos + offset
+		var distance = randf_range(min_dist, max_dist)
+		var candidate = global_position + Vector2(cos(angle), sin(angle)) * distance
 
-		# --- Raycast hacia abajo ---
-		var space_state = get_world_2d().direct_space_state
-		var query = PhysicsRayQueryParameters2D.new()
-		query.from = spawn_pos
-		query.to = spawn_pos + Vector2(0, 200)  # 200 px hacia abajo
-		query.collide_with_areas = false
-		query.collide_with_bodies = true
-		query.collision_mask = 1 << 1  # ← aquí pones LA LAYER DE TU SUELO
+		# 2. Verificar si el punto cae dentro del área
+		var query = PhysicsPointQueryParameters2D.new()
+		query.position = candidate
+		query.collide_with_areas = true
+		query.collide_with_bodies = false
 
-		var result = space_state.intersect_ray(query)
+		var result = space_state.intersect_point(query)
 
-		if result:
-			# Toca suelo, generar ring ahí
-			var ring = ring_scene.instantiate()
-			ring.global_position = result.position
-			get_tree().current_scene.add_child(ring)
-			return
+		# 3. Aceptar solo si golpea el Area2D del suelo
+		for r in result:
+			if r.collider == spawn_area:
+				var ring = ring_scene.instantiate()
+				ring.global_position = candidate
+				get_tree().current_scene.add_child(ring)
+				return
 
-	print("No encontré lugar seguro para ring")
+	print("No encontré lugar válido para un ring")
